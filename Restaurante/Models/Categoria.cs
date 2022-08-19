@@ -20,7 +20,7 @@ namespace Restaurante.Models
         [Required(ErrorMessage = "informe a descrição")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
-        public List<Categoria> Categorias { get; set; }
+        public List<Lanche> Lanches { get; set; }
 
 
     }
