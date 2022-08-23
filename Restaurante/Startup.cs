@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurante.Context;
+using Restaurante.Repositories;
+using Restaurante.Repositories.Interfaces;
 
 namespace Restaurante;
 public class Startup
@@ -16,7 +18,8 @@ public class Startup
     {
         services.AddDbContext<AppDbContext>(options => 
         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+        services.AddTransient<ILancheRepository, LancheRepository>();
+        services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         services.AddControllersWithViews();
     }
 
