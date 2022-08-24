@@ -1,14 +1,21 @@
 ﻿@model IEnumerable<Restaurante.Models.Lanche>
 
-<div><h2>Todos os Lanches</h2></div>
+<div>
+    <h2>@ViewData["Titulo"]</h2>
+</div>
 
-@foreach (var lanche in Model)
-{
-    <div>
-        <h4>@lanche.Nome</h4>
-        <p><img src="@lanche.ImagemUrl"></p>
-        <p>Preço : @lanche.Preco.ToString("c")</p>
+<div class="container">
+    <div class="row">
+        @foreach (var lanche in Model)
+        {
+            <div class="col-sm-4 col-md-4 col-lg4">
+                <h4>@lanche.Nome</h4>
+                <p><img src="@lanche.ImagemUrl" class="img-fluid"></p>
+                <h3>Preço : @lanche.Preco.ToString("c")</h3>
+                <h4>Lanche : @lanche.Nome</h4>
+                <p>@lanche.DescricaoCurta</p>
+
+            </div>
+        }
     </div>
-
-
-}
+</div>
