@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Restaurante.Repositories.Interfaces;
+using Restaurante.ViewModels;
 
 namespace Restaurante.Controllers
 {
@@ -14,10 +15,16 @@ namespace Restaurante.Controllers
 
         public IActionResult List()
         {
-            ViewData["Titulo"] = "Todos os Lanches";
-            ViewData["Data"] = DateTime.Now;
+            /*
             var lanches = _lancheRepository.Lanches;
             return View(lanches);
+            */
+            var lanchesListViewModel = new LancheListViewModel();
+            lanchesListViewModel.Lanches = _lancheRepository.Lanches;
+            lanchesListViewModel.CategoriaAtual = "Categoria Atual";
+
+            return View(lanchesListViewModel);
+
         }
     }
 }
