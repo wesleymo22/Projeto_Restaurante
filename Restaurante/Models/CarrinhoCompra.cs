@@ -52,6 +52,12 @@ namespace Restaurante.Models
                 };
                 _context.CarrinhoCompraItens.Add(carrinhoCompraItem);
             }
+            else
+            {
+                carrinhoCompraItem.Quantidade++;
+            }
+
+            _context.SaveChanges();
         }
     }
 }
