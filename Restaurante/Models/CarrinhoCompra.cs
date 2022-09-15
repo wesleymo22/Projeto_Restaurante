@@ -37,7 +37,7 @@ namespace Restaurante.Models
             };
         }
 
-        public void AdicionaraoCarrinho(Lanche lanche)
+        public void AdicionarAoCarrinho(Lanche lanche)
         {
             var carrinhoCompraItem =
                 _context.CarrinhoCompraItens.SingleOrDefault(
