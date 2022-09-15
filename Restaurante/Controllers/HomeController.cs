@@ -1,14 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Restaurante.Models;
+using Restaurante.Repositories.Interfaces;
+using Restaurante.ViewModels;
 using System.Diagnostics;
 
 namespace Restaurante.Controllers
 {
     public class HomeController : Controller
     {
+        public readonly ILancheRepository _lancheRepository;
+
+        public HomeController(ILancheRepository lancheRepository)
+        {
+            _lancheRepository = lancheRepository;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var homeViewModel = new HomeViewModel
+            {
+                LanchesPreferidos = _lancheRepository.LanchesPreferidos
+            };
+
+            return View(homeViewModel);
         }
 
 
