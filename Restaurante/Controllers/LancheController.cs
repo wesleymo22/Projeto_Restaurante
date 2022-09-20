@@ -33,12 +33,20 @@ namespace Restaurante.Controllers
                     lanches = _lancheRepository.Lanches
                         .Where(l => l.Categoria.CategoriaNome.Equals("Normal"))
                         .OrderBy(l => l.Nome);
+                    categoria = "Lanches tradicionais";
                 }
-                else
+                else if (string.Equals("Natural", categoria, StringComparison.OrdinalIgnoreCase))
                 {
                     lanches = _lancheRepository.Lanches
                         .Where(l => l.Categoria.CategoriaNome.Equals("Natural"))
                         .OrderBy(l => l.Nome);
+                    categoria = "Lanches Naturais";
+                }
+                else
+                {
+                    lanches = _lancheRepository.Lanches.OrderBy(l => l.LancheId);
+                    categoria = "Todos os Lanches";
+                    
                 }
                 categoriaAtual = categoria;
             }
