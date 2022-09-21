@@ -28,6 +28,7 @@ namespace Restaurante.Controllers
             }
             else
             {
+                /*
                 if(string.Equals("Normal", categoria, StringComparison.OrdinalIgnoreCase))
                 {
                     lanches = _lancheRepository.Lanches
@@ -47,7 +48,14 @@ namespace Restaurante.Controllers
                     lanches = _lancheRepository.Lanches.OrderBy(l => l.LancheId);
                     categoria = "Todos os Lanches";
                 }
+                */
+
+                lanches = _lancheRepository.Lanches
+                    .Where(l => l.Categoria.CategoriaNome.Equals(categoria))
+                    .OrderBy(c => c.Nome);
+
                 categoriaAtual = categoria;
+                
             }
 
             var lanchesListViewModel = new LancheListViewModel
