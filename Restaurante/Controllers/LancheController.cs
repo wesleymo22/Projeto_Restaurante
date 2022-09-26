@@ -28,34 +28,11 @@ namespace Restaurante.Controllers
             }
             else
             {
-                /*
-                if(string.Equals("Normal", categoria, StringComparison.OrdinalIgnoreCase))
-                {
-                    lanches = _lancheRepository.Lanches
-                        .Where(l => l.Categoria.CategoriaNome.Equals("Normal"))
-                        .OrderBy(l => l.Nome);
-                    categoria = "Lanches Tradicionais";
-                }
-                else if (string.Equals("Natural", categoria, StringComparison.OrdinalIgnoreCase))
-                {
-                    lanches = _lancheRepository.Lanches
-                        .Where(l => l.Categoria.CategoriaNome.Equals("Natural"))
-                        .OrderBy(l => l.Nome);
-                    categoria = "Lanches Naturais";
-                }
-                else
-                {
-                    lanches = _lancheRepository.Lanches.OrderBy(l => l.LancheId);
-                    categoria = "Todos os Lanches";
-                }
-                */
-
                 lanches = _lancheRepository.Lanches
                     .Where(l => l.Categoria.CategoriaNome.Equals(categoria))
                     .OrderBy(c => c.Nome);
 
-                categoriaAtual = categoria;
-                
+                categoriaAtual = categoria; 
             }
 
             var lanchesListViewModel = new LancheListViewModel
@@ -66,6 +43,12 @@ namespace Restaurante.Controllers
 
             return View(lanchesListViewModel);
 
+        }
+
+        public IActionResult Details(int lancheId)
+        {
+            var lanche = _lancheRepository.Lanches.FirstOrDefault(l => l.LancheId == lancheId);
+            return View(lanche);
         }
     }
 }
