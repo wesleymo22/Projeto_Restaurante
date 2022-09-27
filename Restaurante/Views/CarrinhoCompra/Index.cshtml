@@ -1,13 +1,11 @@
 ﻿@model CarrinhoCompraViewModel
 
 <div class="container">
-    <div class="row">
+    <div class="row checkoutForm">
 
-        <img src="~/images/Full-Cart-icon.png" />
         <div>
-            <h4> Seu carrinho de compras</h4>
+            <img src="~/images/Full-Cart-icon.png" width="30" height="35" /> <h4>Seu carrinho de compras : </h4>
         </div>
-
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -27,12 +25,12 @@
                         <td class="text-left">@item.Lanche.Nome</td>
                         <td class="text-right">@item.Lanche.Preco.ToString("c")</td>
                         <td class="text-right">
-                            @(item.Quantidade * item.Lanche.Preco).ToString("c"))
+                            @((item.Quantidade * item.Lanche.Preco).ToString("c"))
                         </td>
                         <td class="text-center">
                             <a asp-controller="CarrinhoCompra" asp-action="RemoverItemDoCarrinhoCompra"
                            asp-route-lancheId="@item.Lanche.LancheId">
-                                <img src="~/images/remove.ico" />
+                                <img src="~/images/remove.ico" width="20px" height="20px" />
                             </a>
                         </td>
                     </tr>
