@@ -32,6 +32,11 @@ namespace Restaurante.Models
         [StringLength (50)]
         public string Cidade { get; set; }
 
+        [Required(ErrorMessage = "Informe o Estado")]
+        [StringLength(100)]
+        [Display(Name = "Estado")]
+        public string Estado { get; set; }
+
         [Required(ErrorMessage = "Informe o seu telefone")]
         [StringLength(25)]
         [DataType(DataType.PhoneNumber)]
