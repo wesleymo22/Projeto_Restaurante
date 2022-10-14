@@ -15,15 +15,57 @@ namespace Restaurante.Controllers
             _carrinhoCompra = carrinhoCompra;
         }
 
+        [HttpGet]
         public IActionResult Checkout()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Chechout(Pedido pedido)
+        public IActionResult Checkout(Pedido pedido)
         {
-            return View();
+            int totalItensPedido = 0;
+            decimal precoTotalPedido = 0.0m;
+
+            //obtem itens do carrinho de compra do cliente
+            List<CarrinhoCompraItem> itens = _carrinhoCompra.GetCarrinhoCompraItens();
+            _carrinhoCompra.CarrinhoCompraItens = itens;
+
+            //verifica se existem itens de pedido
+            if(_carrinhoCompra.CarrinhoCompraItens.Count == 0)
+            {
+                ModelState.AddModelError("","Seu carrinho esta vazio, que tal incluir um lanche");
+            }
+
+            //Calcula o total de itens e o total do pedido
+            foreach(var item in itens)
+            {
+                totalItensPedido += item.Quantidade;
+                precoTotalPedido += (item.Lanche.Preco * item.Quantidade);
+            }
+
+            //Atribuir os valores obtidos ao pedido
+            pedido.TotalItensPedido = totalItensPedido;
+            pedido.PedidoTotal = precoTotalPedido;
+
+            //Valida os dados do pedido
+            if (ModelState.IsValid)
+            {
+                //Criar o pedido e detalhes
+                _pedidoRepository.CriarPedido(pedido);
+
+                //Define mensagens ao cliente
+                ViewBag.CheckoutCompletoMensagem = "Obrigado pelo seu pedido =)";
+                ViewBag.TotalPedido = _carrinhoCompra.GetCarrinhoCompraTotal();
+
+                //Limpar carrinho do cliente
+                _carrinhoCompra.LimparCarrinho();
+
+                //Exibe a view com dados do cliente e do pedido
+                return View("~/Views/Pedido/CheckoutCompleto.cshtml", pedido);
+            }
+
+            return View(pedido);
         }
     }
 }

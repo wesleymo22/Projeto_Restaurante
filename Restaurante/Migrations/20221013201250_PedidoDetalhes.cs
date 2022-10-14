@@ -21,6 +21,7 @@ namespace Restaurante.Migrations
                     Endereco2 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Cep = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Cidade = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Estado = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Telefone = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PedidoTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),

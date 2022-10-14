@@ -12,7 +12,7 @@ using Restaurante.Context;
 namespace Restaurante.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220929140526_PedidoDetalhes")]
+    [Migration("20221013201250_PedidoDetalhes")]
     partial class PedidoDetalhes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -154,6 +154,11 @@ namespace Restaurante.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Endereco2")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Estado")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");

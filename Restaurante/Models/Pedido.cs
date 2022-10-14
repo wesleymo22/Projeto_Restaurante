@@ -11,7 +11,7 @@ namespace Restaurante.Models
         [StringLength(50)]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "Informe o sombrenome")]
+        [Required(ErrorMessage = "Informe o sobrenome")]
         [StringLength (50)]
         public string Sobrenome { get; set; }
 

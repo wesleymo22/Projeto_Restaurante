@@ -156,6 +156,11 @@ namespace Restaurante.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(50)
