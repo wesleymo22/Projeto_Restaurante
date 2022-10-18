@@ -6,13 +6,13 @@ namespace Restaurante.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManeger;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
-        public AccountController(UserManager<IdentityUser> userManeger,
+        public AccountController(UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager)
         {
-            _userManeger = userManeger;
+            _userManager = userManager;
             _signInManager = signInManager;
         }
 
@@ -28,9 +28,10 @@ namespace Restaurante.Controllers
         public async Task<IActionResult> Login(LoginViewModel loginVM)
         {
             if (ModelState.IsValid)
-               return View(loginVM);
+            
+                return View(loginVM);
 
-            var user = await _userManeger.FindByNameAsync(loginVM.UserName);
+            var user = await _userManager.FindByNameAsync(loginVM.UserName);
 
             if(user != null)
             {
@@ -44,6 +45,7 @@ namespace Restaurante.Controllers
                     return Redirect(loginVM.ReturnUrl);
                 }
             }
+
             ModelState.AddModelError("", "Falha ao realizar o login!");
                 return View(loginVM);
         }
