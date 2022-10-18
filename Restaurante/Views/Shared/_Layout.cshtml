@@ -12,7 +12,10 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Restaurante</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/lanchemac2.png" width="60" height="60"/>
+                    Restaurante
+                    </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -38,10 +41,27 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Restaurante - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer>
+        <section id="contato">
+            <div class="row">
+                <div class="col-10 col-md-5 col-lg-5 offset-1" style="color:black">
+                    <h4> &copy; 2022 - Restaurante</h4>
+                    <p class="text-justify">
+                        Aqui voce encontra aquele lanche gostoso que da agua na boca.
+                        Aquela sobremesa saborosa e para acompanhar sua bebida preferida.
+                        E se voce for vegetariano, temos lanches naturais para voce.
+                    </p>
+                </div>
+
+                <div class="col-10 col-md-5 col-lg-5 offset-1" style="color:black">
+                    <h4>Tem alguma duvida ?</h4>
+                    <ul class="list-unstyted">
+                        <li class="py-1">Av do migue, 10 Sao Paulo SP</li>
+                        <li class="py-1">+551199999999</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

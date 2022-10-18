@@ -1,7 +1,37 @@
 ﻿@model HomeViewModel
 
-<partial name="_Carousel" />
+<div class="container">
+    <section id="sobre">
+        <div class="row justify-content-center">
+            <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                <img src="~/images/layout/icons8-love-50.png" />
+                <h3>Feitos com amor</h3>
+                <p class="text-muted">Fazemos seu lanche com carinho</p>
+            </div>
 
+            <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                <img src="~/images/layout/icons8-get-dressed-50.png" />
+                <h3>Frete Gratis</h3>
+                <p class="text-muted">Entregamos seu pedido</p>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                <img src="~/images/layout/icons8-desconto-48.png" />
+                <h3>Preços camaradas</h3>
+                <p class="text-muted">Promoções imperdiveis</p>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                <img src="~/images/layout/icons8-comida-natural-50.png" />
+                <h3>Lanches naturais</h3>
+                <p class="text-muted">Saldaveis e naturais</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<partial name="_Carousel" />
+<br />
 <h2>Preferidos da semana</h2>
 <h4>Ta com fome?</h4>
 
@@ -11,3 +41,6 @@
         <partial name="_LanchesResumo" for="@Lanche" />
     }
 </div>
+<br />
+
+
