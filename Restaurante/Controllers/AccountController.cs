@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Restaurante.ViewModels;
 
@@ -16,7 +17,8 @@ namespace Restaurante.Controllers
             _signInManager = signInManager;
         }
 
-        public IActionResult Login(string returnUrl)
+        [AllowAnonymous]
+        public IActionResult Login(string? returnUrl)
         {
             return View(new LoginViewModel()
             {
