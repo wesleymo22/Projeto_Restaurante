@@ -30,12 +30,12 @@ namespace Restaurante.Controllers
         public async Task<IActionResult> Login(LoginViewModel loginVM)
         {
             if (!ModelState.IsValid)
-            
+
                 return View(loginVM);
 
             var user = await _userManager.FindByNameAsync(loginVM.UserName);
 
-            if(user != null)
+            if (user != null)
             {
                 var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
                 if (result.Succeeded)
@@ -49,7 +49,7 @@ namespace Restaurante.Controllers
             }
 
             ModelState.AddModelError("", "Falha ao realizar o login!");
-                return View(loginVM);
+            return View(loginVM);
         }
 
         public IActionResult Register()
@@ -77,6 +77,15 @@ namespace Restaurante.Controllers
             }
 
             return View(registerVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            HttpContext.Session.Clear();
+            HttpContext.User = null;
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
