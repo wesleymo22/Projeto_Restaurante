@@ -23,6 +23,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     @await Component.InvokeAsync("CarrinhoCompraResumo")
                     @await Html.PartialAsync("_LoginPartial")
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="bav-link text-light" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin</a>
+                    }
                     <a class="nav-link text-light" asp-area="" asp-controller="Contato" asp-action="Index">Contato</a>
                     @await Component.InvokeAsync("CategoriaMenu")
                     @*@<a class="nav-link text-light" asp-area="" asp-controller="Lanche" asp-action="List">Lanches</a>*@
