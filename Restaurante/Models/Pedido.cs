@@ -22,7 +22,7 @@ namespace Restaurante.Models
 
         [StringLength(100)]
         [Display(Name = "Complemento")]
-        public string Endereco2 { get; set; }
+        public string? Endereco2 { get; set; }
 
         [Required(ErrorMessage = "Informe o CEP")]
         [StringLength(10, MinimumLength = 8)]
