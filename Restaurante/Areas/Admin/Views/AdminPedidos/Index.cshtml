@@ -1,13 +1,30 @@
-﻿@model IEnumerable<Restaurante.Models.Pedido>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Restaurante.Models.Pedido>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Pedidos</h1>
+
+<form method="get" class="form-inline">
+    <p>
+        <input name="filter" class="form-control" placeholder="filtro"
+               value="@Model.RouteValue["Filter"]" />
+    </p>
+    <p>
+        <button type="submit" class="btn btn-info">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Procurar
+        </button>
+    </p>
+</form>
+
+Total de Pedidos : @Model.TotalRecordCount
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Criar novo Pedido</a>
 </p>
 <table class="table">
     <thead>
@@ -49,47 +66,48 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sobrenome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Endereco1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Endereco2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cep)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PedidoEnviado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PedidoEntregueEm)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PedidoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PedidoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PedidoId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sobrenome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Endereco1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Endereco2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cep)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedidoEnviado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedidoEntregueEm)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PedidoId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PedidoId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PedidoId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

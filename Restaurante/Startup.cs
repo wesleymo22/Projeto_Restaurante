@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 using Restaurante.Context;
 using Restaurante.Models;
 using Restaurante.Repositories;
@@ -10,12 +11,11 @@ using Restaurante.Services;
 namespace Restaurante;
 public class Startup
 {
+    public IConfiguration Configuration { get; }
     public Startup(IConfiguration configuration)
     {
         Configuration = configuration;
     }
-
-    public IConfiguration Configuration { get; }
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
@@ -45,6 +45,12 @@ public class Startup
         services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
 
         services.AddControllersWithViews();
+
+        services.AddPaging(options =>
+        {
+            options.ViewName = "Bootstrap4";
+            options.PageParameterName = "pageindex";
+        });
 
         services.AddMemoryCache();
         services.AddSession();
