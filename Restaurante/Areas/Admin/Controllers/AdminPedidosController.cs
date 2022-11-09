@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
 using Restaurante.Context;
 using Restaurante.Models;
+using Restaurante.ViewModels;
 
 namespace Restaurante.Areas.Admin.Controllers
 {
@@ -21,6 +22,28 @@ namespace Restaurante.Areas.Admin.Controllers
         public AdminPedidosController(AppDbContext context)
         {
             _context = context;
+        }
+
+        public IActionResult PedidoLanches(int? id)
+        {
+            var pedido = _context.Pedidos
+                .Include(PedidoDetalhe => PedidoDetalhe.PedidoItens)
+                .ThenInclude(l => l.Lanche)
+                .FirstOrDefault(p => p.PedidoId == id);
+
+            if (pedido == null)
+            {
+                Response.StatusCode = 404;
+                return View("PedidoNotFound", id.Value);
+            }
+
+            PedidoLancheViewModel pedidoLanches = new PedidoLancheViewModel()
+            {
+                Pedido = pedido,
+                PedidoDetalhes = pedido.PedidoItens
+            };
+
+            return View(pedidoLanches);
         }
 
         // GET: Admin/AdminPedidos
@@ -178,5 +201,9 @@ namespace Restaurante.Areas.Admin.Controllers
         {
             return _context.Pedidos.Any(e => e.PedidoId == id);
         }
+
+        
     }
+
+    
 }
