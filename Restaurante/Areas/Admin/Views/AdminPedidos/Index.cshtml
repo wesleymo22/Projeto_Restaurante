@@ -19,13 +19,7 @@
 </form>
 
 Total de Pedidos : @Model.TotalRecordCount
-<div>
-    <vc:pager paging-list="@Model"></vc:pager>
-</div>
 
-<p>
-    <a asp-action="Create">Criar novo Pedido</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -112,3 +106,7 @@ Total de Pedidos : @Model.TotalRecordCount
         }
     </tbody>
 </table>
+
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>

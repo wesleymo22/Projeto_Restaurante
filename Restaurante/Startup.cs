@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
+using Restaurante.Areas.Admin.Servicos;
 using Restaurante.Context;
 using Restaurante.Models;
 using Restaurante.Repositories;
@@ -31,6 +32,7 @@ public class Startup
         services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         services.AddTransient<IPedidoRepository, PedidoRepository>();
         services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
+        services.AddScoped<RelatorioVendasService>();
 
         services.AddAuthorization(option =>
         {
